@@ -1,4 +1,7 @@
 import pygame
+import random
+
+
 
 #Creating the first window
 
@@ -23,11 +26,23 @@ playerX = 320
 playerY = 480
 playerX_change = 0
 
+#Create enemy
+
+enemyImg = pygame.image.load('bug2.png')
+enemyX = random.randint(0,800)
+enemyY = random.randint(50,150)
+enemyX_change = 0
+
+
 
 
 def player(x,y):
     # Draw the player (Blit) first one image, second one is coordinates
     screen.blit(playerImg, (x,y))
+
+def enemy(x,y):
+    # Draw the player (Blit) first one image, second one is coordinates
+    screen.blit(enemyImg, (x,y))
 
 
 
@@ -55,7 +70,15 @@ while running:
     #draw underneath the screen
     # 5 = 5 + 0.1
     playerX += playerX_change
+
+    if playerX <= 0:
+        playerX = 0
+    elif playerX >= 686:
+        playerX = 686
+
+
     player(playerX, playerY)
+    enemy(enemyX, enemyY)
     pygame.display.update()
 
 # Change caption and logo.
